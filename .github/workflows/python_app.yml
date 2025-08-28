@@ -1,0 +1,27 @@
+name: Python application
+
+on:
+  push:
+    branches:
+      - main  # Push to the main branch will trigger this workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Set the operating system for the workflow
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Check out the repository's code
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Specify which Python version to use
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  # Upgrade pip
+          pip install -r requirements.txt  # Install dependencies
+
+      - name: Run script
+        run: python your_script.py  # Replace this with the actual script name you want to run
